@@ -255,7 +255,7 @@ class Tapper:
                         continue
 
                     access_token_created_time = time()
-                    token_live_time = 3600 * 24
+                    token_live_time = 3600
 
                 user_info = await self.get_user_info(http_client=scraper)
                 if user_info.get('galaxy', 0) == 0:
@@ -285,7 +285,7 @@ class Tapper:
                             await self.get_user_info(http_client=scraper)
 
                 if settings.AUTO_UPGRADE:
-                    const = 1.44
+                    const = 1.45
                     available_stars = int((dust / (stars * const)) * 100)
                     if available_stars > settings.MIN_STARS:
                         await asyncio.sleep(delay=randint(5, 15))
