@@ -13,8 +13,6 @@ endpoints = ['data/lang', 'data/boost', 'user/reset', 'galaxy/random', 'galaxy/b
              'user/assets', 'user/awards', 'galaxy/get', 'galaxy/reroll', 'galaxy/capture',
              'user/rating', 'user/refs', 'user/boosts', 'stars/create', 'stars/gift', 'boost/activate']
 
-app_version = '0.6.30'
-
 
 def find_js_files(base_url):
     try:
@@ -58,7 +56,7 @@ def is_valid_endpoints():
         if len(version_data) < 1:
             logger.warning(f"App version data missing: {app_js_file}")
             return False
-        if app_version != version_data[1]:
+        if headers['X-Application-Version'] != version_data[1]:
             logger.warning(f"App version has changed to: {version_data[1]}")
             return False
 
