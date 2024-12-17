@@ -112,11 +112,9 @@ class Tapper:
 
     async def get_galaxy_info(self, http_client: cloudscraper.CloudScraper, galaxy_id: str | None = None):
         try:
-            payload = {
-                'session': self.auth_token,
-                'id': galaxy_id,
-                'member_id': None
-            }
+            payload = {'session': self.auth_token}
+            if galaxy_id is not None:
+                payload['id'] = galaxy_id
             response = http_client.post('https://api.tonverse.app/galaxy/get', data=payload)
             response.raise_for_status()
             response_json = response.json()
