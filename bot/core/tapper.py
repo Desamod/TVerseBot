@@ -124,6 +124,37 @@ class Tapper:
             logger.error(f"{self.session_name} | Unknown error while getting galaxy info | Error: {e}")
             await asyncio.sleep(delay=3)
 
+    async def get_random_galaxy(self, http_client: cloudscraper.CloudScraper):
+        try:
+            payload = {'session': self.auth_token}
+            response = http_client.post('https://api.tonverse.app/galaxy/random', data=payload)
+            response.raise_for_status()
+            response_json = response.json()
+            return response_json.get('response')
+
+        except Exception as e:
+            logger.error(f"{self.session_name} | Unknown error while getting random galaxy | Error: {e}")
+            await asyncio.sleep(delay=3)
+            return None
+
+    async def collect_needles(self, http_client: cloudscraper.CloudScraper, galaxy_id: str):
+        try:
+            payload = {
+                'session': self.auth_token,
+                'galaxy_id': galaxy_id
+            }
+            response = http_client.post('https://api.tonverse.app/galaxy/needles', data=payload)
+            response.raise_for_status()
+            response_json = response.json()
+            response_data = response_json.get('response')
+            reward = response_data.get('stars')
+            logger.success(f"{self.session_name} | Needles collected "
+                           f"| Reward: <e>+{reward}</e> Stars")
+
+        except Exception as e:
+            logger.error(f"{self.session_name} | Unknown error while collecting needles | Error: {e}")
+            await asyncio.sleep(delay=3)
+
     async def collect_dust(self, http_client: cloudscraper.CloudScraper):
         try:
             payload = {'session': self.auth_token}
@@ -296,6 +327,21 @@ class Tapper:
                             await asyncio.sleep(delay=randint(1, 2))
                             await self.get_galaxy_info(http_client=scraper, galaxy_id=galaxy_id)
                             await self.get_user_info(http_client=scraper)
+
+                if settings.CHECK_RANDOM_GALAXY:
+                    check_count = 0
+                    max_count = randint(settings.CHECKER_COUNT[0], settings.CHECKER_COUNT[1])
+                    while check_count < max_count:
+                        await asyncio.sleep(delay=randint(2, 5))
+                        galaxy_info = await self.get_random_galaxy(http_client=scraper)
+                        logger.info(f'{self.session_name} | Checking random galaxy: '
+                                    f'<fg #fffc32>{galaxy_info["title"]}</fg #fffc32>')
+                        if galaxy_info is not None and galaxy_info['needles'] > 0:
+                            await asyncio.sleep(delay=randint(1, 5))
+                            await self.collect_needles(http_client=scraper, galaxy_id=galaxy_info['id'])
+                            check_count = 0
+                        else:
+                            check_count += 1
 
                 if settings.USE_BOOSTS and user_info.get('boosts_active', False):
                     await self.processing_boosts(http_client=scraper)

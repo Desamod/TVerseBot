@@ -16,6 +16,8 @@ class Settings(BaseSettings):
     AUTO_UPGRADE: bool = True
     MIN_STARS: int = 100
     USE_BOOSTS: bool = False
+    CHECK_RANDOM_GALAXY: bool = False
+    CHECKER_COUNT: list[int] = [10, 15]
     REF_ID: str = 'galaxy-00042498770002d6ddec0000a9a392'
     TOKENS_PATH: str = 'session_tokens.json'
 
