@@ -26,7 +26,7 @@ start_text = """
 Select an action:
 
     1. Run bot
-    2. Create session
+    2. Create session (Telethon)
 """
 
 

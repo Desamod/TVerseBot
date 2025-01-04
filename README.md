@@ -24,18 +24,19 @@
 
 
 ## [Settings](https://github.com/Desamod/TVerseBot/blob/master/.env-example/)
-| Settings                    |                                    Description                                     |
-|-----------------------------|:----------------------------------------------------------------------------------:|
-| **API_ID / API_HASH**       |    Platform data from which to run the Telegram session (by default - android)     |
-| **SLEEP_TIME**              |               Sleep time between cycles (by default - [3000, 4000])                |
-| **START_DELAY**             |               Delay between sessions at start (by default - [5, 25])               |
-| **AUTO_MINING**             |                  Auto collecting dust rewards (by default - True)                  |
-| **AUTO_UPGRADE**            |                         Auto-buy stars (by default - True)                         |
-| **USE_BOOSTS**              |                        Aut-use boosts (by default - False)                         |
-| **NIGHT_SLEEP**             |                      Extra sleep at night (by default - True)                      |
-| **NIGHT_SLEEP_START_TIME**  |              Time (hour) when Night mode starts (by default - [0, 2])              |
-| **NIGHT_SLEEP_END_TIME**    |               Time (hour) when Night mode ends (by default - [5, 7])               |
-| **REF_ID**                  | Ref link for registration (charges % for using the bot or you can buy support key) |
+| Settings                   |                                    Description                                     |
+|----------------------------|:----------------------------------------------------------------------------------:|
+| **API_ID / API_HASH**      |    Platform data from which to run the Telegram session (by default - android)     |
+| **SLEEP_TIME**             |               Sleep time between cycles (by default - [3000, 4000])                |
+| **START_DELAY**            |               Delay between sessions at start (by default - [5, 25])               |
+| **AUTO_MINING**            |                  Auto collecting dust rewards (by default - True)                  |
+| **AUTO_UPGRADE**           |                         Auto-buy stars (by default - True)                         |
+| **USE_BOOSTS**             |                        Aut-use boosts (by default - False)                         |
+| **CHECK_RANDOM_GALAXY**    |                      Check random galaxy (by default - False)                      |
+| **CHECKER_COUNT**          |            Count of searches for random galaxy (by default - [10, 15])             |
+| **NIGHT_SLEEP_START_TIME** |              Time (hour) when Night mode starts (by default - [0, 2])              |
+| **NIGHT_SLEEP_END_TIME**   |               Time (hour) when Night mode ends (by default - [5, 7])               |
+| **REF_ID**                 | Ref link for registration (charges % for using the bot or you can buy support key) |
 
 
 ## Quick Start 📚
@@ -87,7 +88,7 @@ You can also use arguments for quick start, for example:
 ~/TVerseBot >>> python3 main.py -a (1/2)
 
 # 1 - Run clicker
-# 2 - Creates a session (pyrogram)
+# 2 - Creates a session (telethon)
 # 3 - Generate TON wallets
 ```
 
@@ -108,7 +109,7 @@ You can also use arguments for quick start, for example:
 ~/TVerseBot >>> python main.py -a (1/2)
 
 # 1 - Run clicker
-# 2 - Creates a session
+# 2 - Creates a session (telethon)
 # 3 - Generate TON wallets
 ```
 
