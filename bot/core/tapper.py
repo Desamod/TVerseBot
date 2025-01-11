@@ -275,6 +275,7 @@ class Tapper:
                     if tg_web_data is None:
                         continue
 
+                    headers['X-Client-Time-Diff'] = str(int(time())) + '-0'
                     await self.login(http_client=scraper, tg_web_data=tg_web_data)
                     if self.auth_token is None:
                         token_live_time = 0
