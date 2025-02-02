@@ -14,7 +14,7 @@ headers = {
     'Sec-Fetch-Mode': 'cors',
     'Sec-Fetch-Site': 'same-site',
     'User-Agent': 'Mozilla/5.0 (Linux; Android 14) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.6422.165 Mobile Safari/537.36',
-    'X-Application-Version': '0.8.16',
+    'X-Application-Version': '0.8.19',
     'X-Client-Time-Diff': '1736589063-0',
     'X-Requested-With': 'XMLHttpRequest'
 }
